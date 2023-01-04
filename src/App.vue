@@ -42,16 +42,24 @@ export default {
       var data = await res.json();
       return data;
     };
-    pokemonApi(1)
-      .then((data) => {
-        pokemon.value.id = data.id;
-        pokemon.value.name = data.name;
-        pokemon.value.img =
-          data.sprites.other["official-artwork"].front_default;
-        pokemon.value.types = data.types;
-        return pokemon;
-      })
-      .catch(console.log(Error));
+    const pokemonCard = (i) =>
+      pokemonApi(i)
+        .then((data) => {
+          pokemon.value.id = data.id;
+          pokemon.value.name = data.name;
+          pokemon.value.img =
+            data.sprites.other["official-artwork"].front_default;
+          pokemon.value.types = data.types;
+          return pokemon;
+        })
+        .catch(console.log(Error));
+
+    Promise.all([pokemonApi(1), pokemonApi(3)]).then((data) => {
+      pokemon.value.id = data.id;
+      pokemon.value.name = data.name;
+      pokemon.value.img = data.sprites.other["official-artwork"].front_default;
+      pokemon.value.types = data.types;
+    });
 
     return { pokemon };
   },
