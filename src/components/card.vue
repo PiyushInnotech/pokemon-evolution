@@ -1,11 +1,9 @@
 <template>
-  <div class="cardWrap" v-for="pokemon in pokemons" :key="pokemon.id">
-    <div class="cardTitle">{{ pokemon.name }} # {{ pokemon.id }}</div>
-    <div class="cardImg"><img :src="pokemon.img" /></div>
+  <div class="cardWrap">
+    <div class="cardTitle"><slot name="description"></slot></div>
+    <div class="cardImg"><slot name="content"></slot></div>
     <div class="cardInfo">
-      <div v-for="type in pokemon.types" :key="type.slot">
-        {{ type.type.name }}
-      </div>
+      <slot name="footer"></slot>
     </div>
   </div>
 </template>
@@ -14,12 +12,12 @@
 import { toRef } from "@vue/reactivity";
 export default {
   name: "pokemonCard",
-  props: ["pokemon1"],
+  props: ["pokemonNo", "evolvedPokemon"],
   setup(props) {
-    const pokemons = toRef(props, "pokemon1");
+    const pokemon = toRef(props, "pokemonNo");
 
     return {
-      pokemons,
+      pokemon,
     };
   },
 };
