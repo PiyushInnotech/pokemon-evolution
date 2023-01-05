@@ -9,17 +9,8 @@
 </template>
 
 <script>
-import { toRef } from "@vue/reactivity";
 export default {
   name: "pokemonCard",
-  props: ["pokemonNo", "evolvedPokemon"],
-  setup(props) {
-    const pokemon = toRef(props, "pokemonNo");
-
-    return {
-      pokemon,
-    };
-  },
 };
 </script>
 

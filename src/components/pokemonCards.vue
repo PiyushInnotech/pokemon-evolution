@@ -16,21 +16,6 @@
       </template>
     </pokemonCard>
   </div>
-
-  <!--evolved pokemon-->
-  <div class="cardWrapper">
-    <pokemonCard v-for="pokemon in pokemonEvolve" :key="pokemon.id">
-      <template v-slot:description
-        >{{ pokemon.name }} # {{ pokemon.id }}</template
-      >
-      <template v-slot:content><img :src="pokemon.img" /></template>
-      <template v-slot:footer>
-        <div v-for="type in pokemon.types" :key="type.slot">
-          {{ type.type.name }}
-        </div>
-      </template>
-    </pokemonCard>
-  </div>
 </template>
 
 <script>
@@ -38,7 +23,7 @@ import { ref } from "@vue/reactivity";
 import pokemonCard from "./card.vue";
 export default {
   name: "pokemonCards",
-  props: ["pokemons", "pokemonEvolve"],
+  props: ["pokemons"],
   emits: ["evolve", "ids"],
   components: { pokemonCard },
   setup(props, { emit }) {

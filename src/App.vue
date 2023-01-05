@@ -1,9 +1,6 @@
 <template>
-  <pokemonCards
-    :pokemons="pokemons"
-    :pokemonEvolve="pokemonEvolve"
-    @evolve="evolveState"
-  />
+  <pokemonCards :pokemons="pokemons" @evolve="evolveState" />
+  <pokemonCards :pokemons="pokemonEvolve" />
 </template>
 
 <script>
