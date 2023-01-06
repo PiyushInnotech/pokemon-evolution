@@ -6,17 +6,12 @@
 <script>
 import { ref } from "vue";
 import PokemonCards from "./components/pokemonCards.vue";
+import {pokemonApi} from './components/pokemonApi.js'
 export default {
   name: "App",
   setup() {
     const pokemons = ref("");
     const pokemonEvolve = ref("");
-    // api rendering for 3 pokemon card
-    const pokemonApi = async (key) => {
-      let res = await fetch("https://pokeapi.co/api/v2/pokemon/" + key);
-      var data = await res.json();
-      return data;
-    };
 
     Promise.all([pokemonApi(1), pokemonApi(4), pokemonApi(7)]).then((data) => {
       pokemons.value = data.map((dat) => ({
@@ -38,7 +33,6 @@ export default {
           types: dat.types,
         }));
       });
-      console.log("hello", key);
     };
     return { pokemons, pokemonEvolve, evolveState };
   },
